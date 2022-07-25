@@ -14,6 +14,14 @@ public class Main {
 
         RangeAdder adder1 = new RangeAdder(start1, end1);
         RangeAdder adder2 = new RangeAdder(start2, end2);
+        // The run method is executed when the thread start() method is called.
+        // we can call these methods on the RangeAdder class cause the class extends Thread
+        // we need the join() method so that the main thread waits on the current thread to finish before continue
+        // so the sum can be set before we get it.
+        adder1.start();
+        adder2.start();
+        adder1.join();
+        adder2.join();
 
         long partialSum1 = adder1.getSum();
         long partialSum2 = adder2.getSum();
